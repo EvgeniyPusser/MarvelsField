@@ -16,7 +16,7 @@ const words = [
 let selectedWord = "";
 let displayedWord = [];
 let remainingAttempts = 0;
-let remainingAllowedGuesses = 0; // 30% of word length
+let maxLetterInputs = 0; // 30% ceiling of word length
 
 // References to DOM elements
 const definitionElem = document.getElementById("definition");
@@ -26,89 +26,105 @@ const wordInputElem = document.getElementById("word-input");
 const attemptsElem = document.getElementById("attempts");
 const gameMessageElem = document.getElementById("game-message");
 const guessButton = document.getElementById("guess-button");
+const remainingLetterCountElem = document.getElementById(
+  "remaining-letter-count"
+);
+const playAgainButton = document.getElementById("play-again");
+const letterCountElem = document.getElementById("letter-count");
 
-// Start Game Function
 function startGame() {
   // Select a random word
   const randomEntry = words[Math.floor(Math.random() * words.length)];
   selectedWord = Object.keys(randomEntry)[0]; // The word to guess
   displayedWord = Array(selectedWord.length).fill("⬛"); // Black squares
 
-  remainingAllowedGuesses = Math.ceil(selectedWord.length * 0.3); // 30% of word length
+  // Calculate max letter guesses (30% ceil of word length)
+  maxLetterInputs = Math.max(1, Math.ceil(selectedWord.length * 0.3));
+  remainingAttempts = Math.max(1, Math.ceil(selectedWord.length + 1)); // Tracks how many guesses are left
+  remainingLetterCountElem.textContent = `Remaining letters you can input: ${maxLetterInputs})`;
 
   // Update UI
-  definitionElem.textContent = randomEntry[selectedWord]; // Show definition
-  wordDisplayElem.textContent = displayedWord.join(" "); // Show black squares
-  attemptsElem.textContent = remainingAttempts; // Show attempts left
-  updateLetterCount(); // Display remaining allowed guesses
+  definitionElem.textContent = randomEntry[selectedWord];
+  wordDisplayElem.textContent = displayedWord.join(" ");
+  attemptsElem.textContent = remainingAttempts;
+  updateLetterCount();
 
   // Reset Inputs
   letterInputElem.value = "";
   wordInputElem.value = "";
-  wordInputElem.readOnly = true; // Lock full word input initially
-  letterInputElem.disabled = false; // Enable letter input
-  gameMessageElem.textContent = ""; // Clear messages
+  wordInputElem.readOnly = true;
+  letterInputElem.disabled = false;
+  gameMessageElem.textContent = "";
+  playAgainButton.style.display = "none";
 }
 
-// Update the remaining guesses count
+// Update the remaining letter input count
 function updateLetterCount() {
-  const letterCountElem = document.getElementById("letter-count");
-  letterCountElem.textContent = `Letters remaining: ${remainingAllowedGuesses}`;
+  remainingLetterCountElem.textContent = `Remaining letters you can input: ${maxLetterInputs}`;
 }
 
 // Handle Letter Input
-function onLetterInput() {
-  const guessedLetter = letterInputElem.value.toLowerCase(); // Letter entered by user
-
-  if (remainingAllowedGuesses <= 0) {
+function handleLetterInput() {
+  if (remainingAttempts <= 0) {
     gameMessageElem.textContent =
-      "You have used all your guesses! Try to guess the word!";
+      "⚠️ No more individual letter inputs allowed! Guess the full word.";
+    letterInputElem.disabled = true;
+    wordInputElem.readOnly = false;
     return;
   }
 
+  const letter = letterInputElem.value.toLowerCase();
+  if (!letter) return;
+
   let correctGuess = false;
 
-  // Loop through the word and record positions of the correct letter
   for (let i = 0; i < selectedWord.length; i++) {
-    if (selectedWord[i] === guessedLetter) {
-      displayedWord[i] = guessedLetter; // Correct letter placed in correct position
+    if (selectedWord[i].toLowerCase() === letter) {
+      displayedWord[i] = selectedWord[i]; // Keep original case
       correctGuess = true;
     }
   }
 
-  // If the letter is not in the word, decrease allowed guesses
-  if (!correctGuess) {
-    remainingAllowedGuesses--; // Decrease remaining guesses if the letter is incorrect
-  }
+  remainingAttempts--;
+  maxLetterInputs--;
+  remainingLetterCountElem.textContent = `Remaining letters you can input: ${maxLetterInputs}`;
 
   // Update UI
   wordDisplayElem.textContent = displayedWord.join(" ");
+  attemptsElem.textContent = remainingAttempts;
   updateLetterCount();
 
-  // Check if there are no more guesses left
-  if (remainingAllowedGuesses <= 0) {
-    gameMessageElem.textContent = "Game over! You've run out of guesses.";
-    letterInputElem.disabled = true; // Disable further letter input
+  if (!displayedWord.includes("⬛")) {
+    gameMessageElem.textContent = "🎉 Congratulations! You guessed the word!";
+    letterInputElem.disabled = true;
+    wordInputElem.readOnly = true;
+  } else if (remainingAttempts === 0) {
+    gameMessageElem.textContent = "❌ Out of attempts! Guess the full word.";
+    letterInputElem.disabled = true;
+    wordInputElem.readOnly = false;
   }
 
-  // Clear the letter input field
   letterInputElem.value = "";
 }
 
-// Enable Whole Word Guessing
+// Enable full word input
 function enableWordInput() {
-  wordInputElem.readOnly = false; // Unlock word input
-  letterInputElem.disabled = true; // Disable letter input
+  wordInputElem.readOnly = false;
+  letterInputElem.disabled = true;
   guessButton.disabled = true;
   gameMessageElem.textContent = "Enter your final guess!";
 }
 
-// Check Final Guess
+// Handle full word guess
 wordInputElem.addEventListener("change", function () {
-  if (wordInputElem.value.toLowerCase() === selectedWord) {
+  const userGuess = wordInputElem.value.trim().toLowerCase();
+  const targetWord = selectedWord.toLowerCase();
+
+  if (userGuess === targetWord) {
     gameMessageElem.textContent = "🎉 Correct! You won!";
   } else {
     gameMessageElem.textContent = `❌ Wrong! The word was: ${selectedWord}`;
   }
-  document.getElementById("play-again").style.display = "block"; // Show Play Again
+
+  playAgainButton.style.display = "block";
 });
