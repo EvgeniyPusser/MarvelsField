@@ -108,12 +108,20 @@ function handleLetterInput() {
 }
 
 // Enable full word input
+// function enableWordInput() {
+//   wordInputElem.readOnly = false;
+//   letterInputElem.disabled = true;
+//   guessButton.disabled = true;
+//   gameMessageElem.textContent = "Enter your final guess!";
+// }
+
 function enableWordInput() {
   wordInputElem.readOnly = false;
   letterInputElem.disabled = true;
-  guessButton.disabled = true;
+  guessButton.disabled = false; // ✅ ALLOW button click!
   gameMessageElem.textContent = "Enter your final guess!";
 }
+
 
 // Handle full word guess
 wordInputElem.addEventListener("change", function () {
@@ -128,3 +136,4 @@ wordInputElem.addEventListener("change", function () {
 
   playAgainButton.style.display = "block";
 });
+
