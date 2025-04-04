@@ -86,7 +86,8 @@ function handleLetterInput() {
   }
 
   remainingAttempts--;
-  maxLetterInputs--;
+  maxLetterInputs = Math.max(0, maxLetterInputs - 1);
+  updateLetterCount();
   remainingLetterCountElem.textContent = `Remaining letters you can input: ${maxLetterInputs}`;
 
   // Update UI
@@ -124,14 +125,34 @@ function enableWordInput() {
 
 
 // Handle full word guess
+// wordInputElem.addEventListener("change", function () {
+//   const userGuess = wordInputElem.value.trim().toLowerCase();
+//   const targetWord = selectedWord.toLowerCase();
+
+//   if (userGuess === targetWord) {
+//     gameMessageElem.textContent = "🎉 Correct! You won!";
+//   } else {
+//     gameMessageElem.textContent = `❌ Wrong! The word was: ${selectedWord}`;
+//   }
+
+//   playAgainButton.style.display = "block";
+// });
+
 wordInputElem.addEventListener("change", function () {
   const userGuess = wordInputElem.value.trim().toLowerCase();
   const targetWord = selectedWord.toLowerCase();
 
   if (userGuess === targetWord) {
     gameMessageElem.textContent = "🎉 Correct! You won!";
+    gameMessageElem.classList.remove("shake-zoom");
+    void gameMessageElem.offsetWidth; // <- force reflow
   } else {
     gameMessageElem.textContent = `❌ Wrong! The word was: ${selectedWord}`;
+
+    // Trigger shake animation
+    gameMessageElem.classList.remove("shake-zoom");
+    void gameMessageElem.offsetWidth; // <- force reflow
+    gameMessageElem.classList.add("shake-zoom");
   }
 
   playAgainButton.style.display = "block";

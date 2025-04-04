@@ -137,10 +137,11 @@ body {
   width: 22vw;
   padding: 15px;
   border: 2px solid #333;
-  border-radius: 8px;
+  border-radius: 18px;
   margin-top: 12px;
   text-align: center;
   background-color: #fff;
+  border: 5px solid #333;
 }
 
 /* Remaining Letters */
@@ -154,7 +155,6 @@ body {
 /* Buttons */
 .buttons {
   margin-top: 8vh;
-  display: flex;
   gap: 15px;
 }
 
@@ -170,7 +170,7 @@ body {
 }
 
 .btn:hover {
-  background-color: #0056b3;
+  background-color: black;
 }
 
 #play-again {
@@ -184,10 +184,10 @@ body {
 
 /* Attempts Label */
 #attempts-label {
-  font-size: 1.3rem;
+  font-size: 1.7rem;
   margin-top: 12px;
   font-weight: bold;
-  color: #d9534f;
+  color: red;
 }
  header {
    font-size: 3.5rem;
@@ -198,7 +198,7 @@ body {
 
  .definition-section {
    margin-top: 3vh;
-   font-size: 1.4rem;
+  font-size: 2.1rem;
    width: 50vw;
    border: 3px solid black;
    padding: 10px;
@@ -207,6 +207,10 @@ body {
    background-color: white;
    border: 5px solid #333;
    border-radius: 15px;
+  text-align: center;
+    color: violet;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px #000000;
  }
 
  #remaining-letters {
@@ -216,3 +220,32 @@ body {
    color: yellow;
    text-align: center;
  }
+@keyframes shakeZoom {
+  0% {
+    transform: scale(2) translateX(0);
+  }
+
+  20% {
+    transform: scale(2.05) translateX(-5px);
+  }
+
+  40% {
+    transform: scale(2.05) translateX(5px);
+  }
+
+  60% {
+    transform: scale(2.05) translateX(-5px);
+  }
+
+  80% {
+    transform: scale(2.05) translateX(5px);
+  }
+
+  100% {
+    transform: scale(2) translateX(0);
+  }
+}
+
+.shake-zoom {
+  animation: shakeZoom 0.5s ease;
+}
