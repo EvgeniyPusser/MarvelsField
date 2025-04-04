@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marvels Field Game</title>
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+  <header>
+    <h1 class="logo">Marvels Field Game</h1>
+  </header>
+
+  <main class="main">
+    <!-- Definition Section -->
+    <section class="definition-section">
+      <p id="definition">Press "Start Game" to begin</p>
+    </section>
+
+    <!-- Game Area -->
+    <section class="game-area">
+      <!-- Hidden Word Display -->
+      <div class="word-display" id="word-display">
+        <!-- Hidden letters will be shown here as black squares -->
+      </div>
+
+      <!-- Input for guessing letters -->
+      <input type="text" id="letter-input" class="input" placeholder="Enter a letter" maxlength="1" minlength="1"
+        onchange="handleLetterInput()" />
+
+      <!-- Letter Count Display -->
+        <p id="remaining-letters">Remaining letters you can input: <span id="remaining-letter-count"></span></p>
+
+      <!-- Word Input (Read-Only at start) -->
+      <input type="text" id="word-input" class="input" placeholder="Enter whole word" readonly />
+
+      <!-- Remaining Attempts -->
+      <p id="attempts-label">Attempts left: <span id="attempts"></span></p>
+
+      <!-- Buttons -->
+      <div class="buttons">
+        <button id="guess-button" onclick="enableWordInput()">Guess Word</button>
+        <button id="start-button" onclick="startGame()">Start Game</button>
+        <button id="play-again" onclick="startGame()" style="display:none;">Play Again</button>
+      </div>
+    </section>
+
+    <!-- Game Status -->
+    <section class="game-status">
+      <p id="game-message"></p>
+    </section>
+  </main>
+
+  <script src="src/variant.js"></script>
+</body>
+
+</html>

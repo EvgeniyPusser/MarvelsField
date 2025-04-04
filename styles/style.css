@@ -1,0 +1,230 @@
+/* body {
+  text-align: center;
+}
+
+.main {
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: -15vh;
+}
+
+.buttons {
+  margin-top: 10vh;
+}
+
+#submit-button {
+  margin-right: 2vw;
+}
+
+#play-again {
+  display: none;
+}
+
+.word-input {
+  font-size: 1.5rem;
+  width: 20vw;
+}
+
+.btn {
+  font-size: 1.3rem;
+}
+
+.logo {
+  font-size: 2.3rem;
+}
+
+.definition-section {
+  margin-top: 5vh;
+  font-size: 1.3rem;
+  width: 50vw;
+  margin-left: auto;
+  margin-right: auto;
+  border: 3px solid black;
+  height: 10vh;
+}
+
+/* Adding styles for when the letter is correct (white squares) and incorrect (black squares) */
+.letter {
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  border: 2px solid #333;
+  margin: 5px;
+  background-color: black;
+  /* Default background color for incorrect letters */
+  text-align: center;
+  line-height: 40px;
+  font-size: 1.5rem;
+  color: white;
+}
+
+/* When letter is correctly placed, set background to white */
+.letter.correct {
+  background-color: white;
+  color: black;
+}
+
+/* When letter is wrong, background stays black */
+.letter.incorrect {
+  background-color: black;
+}
+
+#remaining-letters {
+  font-size: 1.2rem;
+  margin-top: 10px;
+  color: #333;
+}
+
+.input{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  width: 20vw;
+  padding: 20px;
+  border: 2px solid #333;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+#input-field {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 1.5rem;
+  text-align: center;
+} */
+/* General Styles */
+body {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+/* Main Container */
+.main {
+  height: 75vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: -10vh;
+}
+
+/* Logo/Header */
+.logo {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-top: 5vh;
+}
+
+/* Definition Box */
+.definition-section {
+  margin-top: 3vh;
+  font-size: 1.4rem;
+  width: 50vw;
+  border: 3px solid black;
+  padding: 10px;
+  height: auto;
+  min-height: 8vh;
+  background-color: white;
+}
+
+/* Word Display */
+.word-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+/* Letter Styles */
+.letter {
+  width: 45px;
+  height: 45px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #333;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 5px;
+  background-color: black;
+  /* Default: hidden letters */
+  color: white;
+  border-radius: 5px;
+}
+
+.letter.correct {
+  background-color: white;
+  color: black;
+}
+
+.letter.incorrect {
+  background-color: black;
+}
+
+/* Input Fields */
+.input {
+  font-size: 1.5rem;
+  width: 22vw;
+  padding: 15px;
+  border: 2px solid #333;
+  border-radius: 8px;
+  margin-top: 12px;
+  text-align: center;
+  background-color: #fff;
+}
+
+/* Remaining Letters */
+#remaining-letters {
+  font-size: 1.3rem;
+  margin-top: 12px;
+  font-weight: bold;
+  color: #444;
+}
+
+/* Buttons */
+.buttons {
+  margin-top: 8vh;
+  display: flex;
+  gap: 15px;
+}
+
+.btn {
+  font-size: 1.4rem;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+#play-again {
+  display: none;
+  background-color: #28a745;
+}
+
+#play-again:hover {
+  background-color: #1e7e34;
+}
+
+/* Attempts Label */
+#attempts-label {
+  font-size: 1.3rem;
+  margin-top: 12px;
+  font-weight: bold;
+  color: #d9534f;
+}
