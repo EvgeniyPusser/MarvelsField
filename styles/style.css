@@ -1,49 +1,10 @@
-/* body {
-  text-align: center;
-}
-
-.main {
-  height: 70vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: -15vh;
-}
-
-.buttons {
-  margin-top: 10vh;
-}
-
-#submit-button {
-  margin-right: 2vw;
-}
-
-#play-again {
-  display: none;
-}
-
-.word-input {
-  font-size: 1.5rem;
-  width: 20vw;
-}
-
-.btn {
-  font-size: 1.3rem;
-}
-
-.logo {
-  font-size: 2.3rem;
-}
-
-.definition-section {
-  margin-top: 5vh;
-  font-size: 1.3rem;
-  width: 50vw;
-  margin-left: auto;
-  margin-right: auto;
-  border: 3px solid black;
-  height: 10vh;
+/* Resetting default styles for body and html */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #1e7e34;
 }
 
 /* Adding styles for when the letter is correct (white squares) and incorrect (black squares) */
@@ -228,3 +189,30 @@ body {
   font-weight: bold;
   color: #d9534f;
 }
+ header {
+   font-size: 3.5rem;
+   font-weight: bold;
+   margin-top: 5vh;
+   color: gold;
+ }
+
+ .definition-section {
+   margin-top: 3vh;
+   font-size: 1.4rem;
+   width: 50vw;
+   border: 3px solid black;
+   padding: 10px;
+   height: auto;
+   min-height: 8vh;
+   background-color: white;
+   border: 5px solid #333;
+   border-radius: 15px;
+ }
+
+ #remaining-letters {
+   font-size: 1.3rem;
+   margin-top: 12px;
+   font-weight: bold;
+   color: yellow;
+   text-align: center;
+ }
