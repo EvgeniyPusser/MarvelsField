@@ -108,14 +108,6 @@ function handleLetterInput() {
   letterInputElem.value = "";
 }
 
-// Enable full word input
-// function enableWordInput() {
-//   wordInputElem.readOnly = false;
-//   letterInputElem.disabled = true;
-//   guessButton.disabled = true;
-//   gameMessageElem.textContent = "Enter your final guess!";
-// }
-
 function enableWordInput() {
   wordInputElem.readOnly = false;
   letterInputElem.disabled = true;
@@ -124,20 +116,7 @@ function enableWordInput() {
 }
 
 
-// Handle full word guess
-// wordInputElem.addEventListener("change", function () {
-//   const userGuess = wordInputElem.value.trim().toLowerCase();
-//   const targetWord = selectedWord.toLowerCase();
-
-//   if (userGuess === targetWord) {
-//     gameMessageElem.textContent = "🎉 Correct! You won!";
-//   } else {
-//     gameMessageElem.textContent = `❌ Wrong! The word was: ${selectedWord}`;
-//   }
-
-//   playAgainButton.style.display = "block";
-// });
-
+// Event Listeners
 wordInputElem.addEventListener("change", function () {
   const userGuess = wordInputElem.value.trim().toLowerCase();
   const targetWord = selectedWord.toLowerCase();
